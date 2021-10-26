@@ -1,5 +1,6 @@
+/* eslint-disable import/prefer-default-export */
 import {
-  Connection, EntityManager, QueryRunner, Repository
+  Connection, EntityManager, QueryRunner, Repository,
 } from 'typeorm';
 import getConnection from '../typeOrmConnection';
 
