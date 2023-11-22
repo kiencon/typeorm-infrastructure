@@ -1,5 +1,6 @@
 import 'dotenv/config';
 import {
+  AlreadyHasActiveConnectionError,
   Connection,
   EntitySchema,
   createConnection as _createConnection,
@@ -29,10 +30,15 @@ const getConnection = async (): Promise<Connection> => {
   console.time(action);
   let cnn: Connection;
   try {
+    await createConnection();
     cnn = await createConnection();
   } catch (e) {
-    console.log('reuse connection');
-    cnn = _getConnection();
+    if (e instanceof AlreadyHasActiveConnectionError) {
+      console.log('reuse connection');
+      cnn = _getConnection();
+    } else {
+      throw e;
+    }
   }
   console.timeEnd(action);
   return cnn;
