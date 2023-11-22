@@ -1,33 +1,14 @@
-# Awesome Project Build with TypeORM
+# Demo infrastructure for TYPEORM, using repository and unit of work pattern
 
-Steps to run this project:
+## Steps to run this project:
 
-1. Run `npm i` command
-2. Setup database settings inside `ormconfig.json` file
-3. Run `npm start` command
+- Run `yarn` command
+- Setup database settings inside `ormconfig.json` file
+- Execute functions in src/__test__ folder
 
-# Very important configuration
-{
-  "type": "mysql",
-  "host": "localhost",
-  "port": 3306,
-  "username": "root",
-  "password": "123456",
-  "database": "test",
-  "synchronize": true,
-  "logging": false,
-  "entities": ["build/entity/*.js"],
-  "migrations": [
-    "src/migration/*.js"
-  ],
-  "cli": {
-    "entitiesDir": "build/entity",
-    "migrationsDir": "src/migration"
-  }
-}
+## NOTE:
+- The code work with TypeORM 0.2.32
+- TypeORM has updated 0.3.x so we need to upgrade the code to fit the new version.
 
-## Will fail migrate when change configutaion at here
-"migrations": [
-  "src/migration/*.ts"
-]
-They should be an *.js
+## TODO:
+- Implement unit test

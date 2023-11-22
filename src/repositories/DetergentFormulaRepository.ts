@@ -1,5 +1,5 @@
 import { EntityRepository } from 'typeorm';
-import { DetergentFormula } from '../entity';
+import { DetergentFormula } from '../entities';
 import BaseRepository from './BaseRepository';
 
 @EntityRepository(DetergentFormula)

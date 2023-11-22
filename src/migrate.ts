@@ -5,10 +5,9 @@ const migrate = async (): Promise<void> => {
   try {
     const cnn: Connection = await getConnection();
     await cnn.runMigrations();
-    // process.exit(0);
   } catch (error) {
     Promise.reject(error);
   }
 };
 
-migrate();
+export default migrate;

@@ -1,5 +1,5 @@
 import { Repository } from 'typeorm';
-import IEntity from '../entity/IEntity';
+import IEntity from '../entities/IEntity';
 
 abstract class BaseRepository<T extends IEntity> extends Repository<T> {}
 

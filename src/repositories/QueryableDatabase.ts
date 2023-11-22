@@ -18,8 +18,8 @@ export default class QueryableDatabase {
     return this.queryRunner.manager.getCustomRepository(ICustomRepository);
   }
 
-  public async handle(work: any): Promise<any> {
-    let result;
+  public async handle<T>(work: () => Promise<T>): Promise<T> {
+    let result: T;
     let isError = false;
     try {
       result = await work();

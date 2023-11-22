@@ -1,24 +1,27 @@
+import 'dotenv/config';
 import {
   Connection,
+  EntitySchema,
   createConnection as _createConnection,
-  getConnection as _getConnection,
+  getConnection as _getConnection
 } from 'typeorm';
-import * as Entities from './entity';
+import * as Entities from './entities';
+import IEntity from './entities/IEntity';
 
-const getEntities = (): any[] => Object.values(Entities);
+const getEntities = (): EntitySchema[] => Object.values(Entities) as IEntity[] as EntitySchema[];
 
 const createConnection = (): Promise<Connection> => _createConnection({
   type: 'mysql',
   host: 'localhost',
   port: 3306,
-  username: 'root',
-  password: '123456',
-  database: 'test',
+  username: process.env.USER_NAME,
+  password: process.env.PASSWORD,
+  database: process.env.DATABASE_NAME,
   synchronize: false,
   migrationsRun: false,
   migrations: [`${__dirname}/migration/*.{ts, js}`],
   logging: false,
-  entities: getEntities(),
+  entities: getEntities()
 });
 
 const getConnection = async (): Promise<Connection> => {

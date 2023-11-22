@@ -2,17 +2,17 @@
   "type": "mysql",
   "host": "localhost",
   "port": 3306,
-  "username": "root",
-  "password": "123456",
-  "database": "test",
+  "username": "",
+  "password": "",
+  "database": "",
   "synchronize": true,
   "logging": false,
-  "entities": ["build/entity/*.js"],
+  "entities": ["build/entities/*.js"],
   "migrations": [
     "src/migration/*.js"
   ],
   "cli": {
-    "entitiesDir": "build/entity",
+    "entitiesDir": "build/entities",
     "migrationsDir": "src/migration"
   }
 }

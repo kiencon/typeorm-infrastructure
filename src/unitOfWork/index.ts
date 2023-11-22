@@ -1,4 +1,3 @@
-/* eslint-disable import/prefer-default-export */
 import {
   Connection, EntityManager, QueryRunner, Repository,
 } from 'typeorm';
@@ -26,16 +25,20 @@ class UnitOfWork {
     this.setTransactionManager();
   }
 
-  async complete(work: () => Promise<void>): Promise<void> {
+  async complete<T>(work: () => Promise<T>): Promise<T> {
+    let result: T;
     try {
-      await work();
+      result = await work();
       await this.queryRunner.commitTransaction();
     } catch (error) {
       await this.queryRunner.rollbackTransaction();
       throw error;
     } finally {
+      console.log('release queryRunner');
       await this.queryRunner.release();
     }
+
+    return result;
   }
 
   getRepository<T>(IEntity: new () => T): Repository<T> {
@@ -53,3 +56,4 @@ class UnitOfWork {
 }
 
 export { UnitOfWork };
+
